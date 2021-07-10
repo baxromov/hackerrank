@@ -16,21 +16,28 @@ through each command in order and perform the corresponding operation on your li
 """
 
 arr = []
-for i in range(int(input())):
-    s = input().split()
-    for j in range(1, len(s)):
-        if s[0] == 'insert':
-            arr.insert(i, s[j])
-        elif s[0] == 'print':
-            print(arr)
-        elif s[0] == 'remove':
-            arr.remove(s[j])
-        elif s[0] == 'append':
-            arr.append(s[j])
-        elif s[0] == 'pop':
-            arr.pop()
-        elif s[0] == 'sort':
-            arr.sort()
-        elif s[0] == 'reverse':
-            arr.reverse()
+cmd = ['insert', 'print', 'remove', 'append', 'sort', 'pop', 'reverse']
 
+n = range(int(input("N:")))
+new_list = []
+for i in n:
+    arr.append(input().split())
+
+for k in range(len(arr)):
+    if arr[k][0] == 'insert':
+        new_list.insert(int(arr[k][1]), int(arr[k][2]))
+    elif arr[k][0] == 'print':
+        print(new_list)
+    elif arr[k][0] == 'remove':
+        new_list.remove(int(arr[k][1]))
+    elif arr[k][0] == 'append':
+        new_list.append(int(arr[k][1]))
+    elif arr[k][0] == 'sort':
+        new_list.sort()
+    elif arr[k][0] == 'pop':
+        new_list.pop()
+    elif arr[k][0] == 'reverse':
+        new_list.reverse()
+
+
+print(new_list)
