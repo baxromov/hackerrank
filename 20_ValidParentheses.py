@@ -9,34 +9,43 @@ Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 
 """
+open_list = ["[", "{", "("]
+close_list = ["]", "}", ")"]
+"""
+def isValid(s):
+    stack = []
+    for i in s:
+        if i in open_list:
+            stack.append(i)
+        elif i in close_list:
+            pos = close_list.index(i)
+            if ((len(stack) > 0) and
+                    (open_list[pos] == stack[len(stack) - 1])):
+                stack.pop()
+            else:
+                return False
+    if len(stack) == 0:
+        return True
+    else:
+        return False
+
+"""
 
 
 def isValid(s):
-    new_list = []
-    signs = ['(', ')', '[', ']', '{', '}']
-    ascii_code = []
-    for i in signs:
-        ascii_code.append(ord(i))
-    print(ascii_code)
-
+    stack = []
     for i in s:
-        new_list.append(i)
-
-    new_list_ascii = []
-    for i in new_list:
-        new_list_ascii.append(ord(i))
-
-    print(new_list_ascii)
-
-    if (new_list.count(signs[0]) == new_list.count(signs[1]) and new_list.count(signs[2]) == new_list.count(signs[3]) and new_list.count(signs[4]) == new_list.count(signs[5])) and new_list_ascii == sorted(new_list_ascii):
+        if i in open_list:
+            stack.append(i)
+        elif i in close_list:
+            pos = close_list.index(i)
+            if open_list[pos] == stack[len(stack)-1]:
+                stack.pop()
+            else:
+                return False
+    if len(stack) == 0:
         return True
+    else:
+        return False
 
-
-
-    return False
-
-
-print(isValid("()[]"))
-print(ord('('), '-', ord(')'))
-print(ord('['), '-', ord(']'))
-print(ord('{'), '-', ord('}'))
+print(isValid("{[(){}]}"))
